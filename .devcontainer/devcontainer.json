@@ -1,0 +1,85 @@
+{
+  "name": "Multi-Language Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installMaven": true,
+      "installGradle": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11",
+      "installTools": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // general
+        "shd101wyy.markdown-preview-enhanced",
+        "yzhang.markdown-all-in-one",
+        "takumii.markdowntable",
+        "DavidAnson.vscode-markdownlint",
+        "jebbs.plantuml",
+        "redhat.vscode-yaml",
+        "hediet.vscode-drawio",
+        // frontend
+        "george-alisson.html-preview-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "Vue.volar",
+        "ms-vscode.vscode-html-language-features",
+        // ai agent
+        "RooVeterinaryInc.roo-cline",
+        // java
+        "ms-vscode.vscode-java-pack",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vscjava.vscode-spring-initializr",
+        // python
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "ms-python.django",
+        "ms-toolsai.jupyter",
+        // database
+        "cweijan.vscode-database-client2"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/local/sdkman/candidates/java/current"
+          }
+        ]
+      }
+    }
+  },
+  "postCreateCommand": "pip install --upgrade pip && pip install django fastapi streamlit uvicorn && npm install -g @vue/cli",
+  "forwardPorts": [
+    3000,
+    8000,
+    8080,
+    8501
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Vue.js Dev Server"
+    },
+    "8000": {
+      "label": "Django/FastAPI Server"
+    },
+    "8080": {
+      "label": "Spring Boot Server"
+    },
+    "8501": {
+      "label": "Streamlit App"
+    }
+  },
+  "remoteUser": "codespace"
+}
